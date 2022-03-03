@@ -18,12 +18,16 @@
 #include <PubSubClient.h> //Biblioteca para conexion MQTT
 
 //Datos de WiFi
-const char* ssid = "Dir_Electronica_v2.0";  // Aquí debes poner el nombre de tu red
-const char* password = "SoyPobre2022";  // Aquí debes poner la contraseña de tu red
+//const char* ssid = "Dir_Electronica_v2.0";  // Aquí debes poner el nombre de tu red
+//const char* password = "SoyPobre2022";  // Aquí debes poner la contraseña de tu red
+
+const char* ssid = "UPPue-WiFi";  // Aquí debes poner el nombre de tu red
+const char* password = "";  // Aquí debes poner la contraseña de tu red
 
 //Datos del broker MQTT
-const char* mqtt_server = "192.168.0.31"; // Si estas en una red local, coloca la IP asignada, en caso contrario, coloca la IP publica
-IPAddress server(192,168,0,31);
+const char* mqtt_server = "192.168.65.21";
+//const char* mqtt_server = "192.168.0.31"; // Si estas en una red local, coloca la IP asignada, en caso contrario, coloca la IP publica
+//IPAddress server(192,168,0,31);
 
 // Objetos
 WiFiClient espClient; // Este objeto maneja los datos de conexion WiFi
@@ -74,7 +78,8 @@ void setup() {
   delay (1000); // Esta espera es solo una formalidad antes de iniciar la comunicación con el broker
 
   // Conexión con el broker MQTT
-  client.setServer(server, 1883); // Conectarse a la IP del broker en el puerto indicado
+  client.setServer(mqtt_server, 1883); // Conectarse a la IP del broker en el puerto indicado
+  //client.setServer(server, 1883); // Conectarse a la IP del broker en el puerto indicado
   client.setCallback(callback); // Activar función de CallBack, permite recibir mensajes MQTT y ejecutar funciones a partir de ellos
   delay(1500);  // Esta espera es preventiva, espera a la conexión para no perder información
 
